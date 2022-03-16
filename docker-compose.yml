@@ -1,0 +1,21 @@
+services:
+  bot:
+    image: unwishingmoon/pixiu-bot
+    restart: always
+    volumes:
+      - /var/run/mysqld:/sockets
+
+  dashboard:
+    image: unwishingmoon/pixiu-webserver
+    restart: always
+    volumes:
+      - /var/run/mysqld:/sockets
+
+  database:
+    image: mariadb:10
+    restart: always
+    volumes:
+      - db-data:/var/lib/mysql
+
+volumes:
+  db-data:
